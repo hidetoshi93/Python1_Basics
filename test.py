@@ -25,13 +25,14 @@
 # while b < 10:
 #     print(b, end=',')
 #     a, b = b, a+b
-input_line = input().split(' ')
-input_line_new = []
-for i in input_line:
-    input_line_new.append(int(i))
-print(input_line)
+input_line = input()
 
-for j in input_line_new:
-    if j != min(input_line_new) and j != max(input_line_new):
-        print(j)
-        break
+for i in range (len(input_line)):
+    if input_line[i] != input_line[i+1] and input_line[i+1] != input_line[i+2]:
+        if input_line[i] != input_line[i+2]:
+            print('OK')
+        else:
+            print('NG')
+    else:
+        print('NG')
+    break
