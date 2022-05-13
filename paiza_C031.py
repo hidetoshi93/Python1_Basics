@@ -24,7 +24,7 @@ for j in range(len(city_output)):
         break
 
 for k in range(len(city_output)):
-    time_output = abs(int(time_inp[0]) - (city_inp_time_diff - time_diff_list[k]))
+    time_output = int(time_inp[0]) - (city_inp_time_diff - time_diff_list[k])
     if time_output < 24:
         hour_output.append(time_output)
     else:
@@ -34,3 +34,32 @@ for k in range(len(city_output)):
                 break
         hour_output.append(time_output)
     print('{:02d}:{:02d}'.format(int(hour_output[k]),int(time_inp[-1])))
+
+# l = {}
+
+# for i in range(int(input())):
+#     a = input().strip().split(" ")
+#     l[a[0]] = int(a[1])
+# print(l)
+# c = input().strip().split(" ")
+# name = c[0]
+# t = c[1].strip().split(":")
+# t = list(map(int, t))   # int変換
+
+# for aa in l.items():
+#     m = 0
+#     print(l[name])
+#     print(aa)
+#     if l[name] < aa[1]:
+#         m = aa[1] - l[name]
+
+#     else:
+#         m = l[name] - aa[1]
+#         m = 24-m
+
+#     m = t[0] + m
+    
+#     if m >= 24:
+#         m -= 24
+
+#     print(format(m, '02') + ":" + format(t[1], '02'))

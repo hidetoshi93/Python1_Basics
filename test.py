@@ -26,8 +26,12 @@
 #     print(b, end=',')
 #     a, b = b, a+b
 
-inp = int(input())
-out = 0
-for i in range(1, inp):
-    out = i*inp
-    print(f'{out} ', end = '')
+inp = input().split(' ')
+inp_list = [int(i) for i in inp]
+
+if len(inp_list[0] % inp_list[1]) != 0:
+    tree_num = int(inp_list[0]/inp_list[1]) + 1
+    print(inp_list[2] * tree_num )
+else:
+    tree_num = int(inp_list[0]/inp_list[1])
+    print(inp_list[2] * tree_num)
