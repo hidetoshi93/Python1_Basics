@@ -1,39 +1,36 @@
 # 0/10 TestCase
 N = int(input())
-time_diff_list = []
-hour_output= []
-city_output= []
-city_inp_time_diff = 0
+city_GMT_dic = {}
 
 for i in range(0,N):
-    i_n = input().split(' ')
-    time_diff_list.append(int(i_n[-1]))
-    city_output.append(i_n[0])
-
-city_and_time_inp = input()
-city_inp = city_and_time_inp.split(' ')[0]
-time_inp = city_and_time_inp.split(' ')[-1].split(':')
-
-if int(time_inp[0]) == 0:
-    time_inp[0] = 24
+    city_and_GMT = input().strip().split(' ')
+    # city_GMT_dic[key] = value
+    city_GMT_dic[city_and_GMT[0]] = int(city_and_GMT[1])
     
+inp_city_localtime = input().strip().split(' ')
+city_name = inp_city_localtime[0]
+local_hour_inp = int(inp_city_localtime[1].strip().split(':')[0])
+local_min_inp = int(inp_city_localtime[1].strip().split(':')[1])
 
-for j in range(len(city_output)):
-    if city_output[j] == city_inp:
-        city_inp_time_diff = time_diff_list[j]
-        break
-
-for k in range(len(city_output)):
-    time_output = int(time_inp[0]) - (city_inp_time_diff - time_diff_list[k])
-    if time_output < 24:
-        hour_output.append(time_output)
+for city_GMT in city_GMT_dic.items():
+    local_GMT_time = 0
+    local_time = 0
+    if city_GMT_dic[city_name] < city_GMT[1]:
+        local_GMT_time = city_GMT[1] - city_GMT_dic[city_name]
     else:
-        while True:
-            time_output = time_output - 24
-            if(time_output >= 0 and time_output < 24):
-                break
-        hour_output.append(time_output)
-    print('{:02d}:{:02d}'.format(int(hour_output[k]),int(time_inp[-1])))
+        local_GMT_time = city_GMT_dic[city_name] - city_GMT[1]
+        local_GMT_time = 24 - local_GMT_time
+
+    local_time = local_hour_inp + local_GMT_time
+
+    if local_time >= 24:
+        local_time -= 24
+
+    print(format(local_time, '02') + ":" + format(local_min_inp, '02'))
+
+
+
+    # print('{:02d}:{:02d}'.format(int(hour_output[k]),int(time_inp[-1])))
 
 # l = {}
 
